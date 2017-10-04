@@ -3,8 +3,7 @@ MarkupProject
 
 Info
 ----
-Create an interactive program in the language of your choice that will read, score, and then assign
-an arbitrary score to HTML files based on a set of rules. Changes to the content can be re-run over time to determine improvement or regression of the score. Each unique run should be stored with the date and time it was run along with the score received for the content.
+Create a program in the language of your choice that will read HTML files, calculate scores based on a set of rules, and then save the score for each file. Changes to the content can be re-run over time to determine improvement or regression of the score. Each unique run should be stored with the date and time it was run along with the score received for the file.
 
 You may use external libraries if you feel they will help, but you must place them in the appropriate folder based on the project layout section.
 
