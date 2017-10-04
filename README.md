@@ -97,10 +97,7 @@ example:
 /html>
 ````
 
-
-
 Instructions
 ------------
 * Begin working on the project and commit your code to this repo.
 * When you are finished email your RedVentures recruiter.
-* Note that each folder has a blank README.md file.  Feel free to place any notes you may have in these files.
