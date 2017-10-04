@@ -9,14 +9,12 @@ You may use external libraries if you feel they will help, but you must place th
 
 Requirements
 -----------------
-* Accept HTML Content Input
-* Accept filename prefix to score HTML Content (`bob_2013_02_10` for `bob_2013_02_10.html`)
 * Score HTML content using the scoring guide
 * Save results to a SQL database (MySQL, SQL Server, sqlite, SQL Server Express)
-* A user should be able to retrieve scores for a given filename prefix
+* A user should be able to retrieve scores for a given file
 * A user should be able to retrieve all scores run in the system for a custom date range
-* A user should be able to retrieve highest scored unique id
-* A user should be able to retrieve lowest scored unique id
+* A user should be able to retrieve highest score for a given file
+* A user should be able to retrieve lowest score for a given file
 * Additionally you should write one query that will find the average score for all runs **__see project layout below__**
 * Finally, include instructions on how to get your code running.  Include the version of whatever language you wrote it in, as well as what platform (windows/osx/linux, etc) you are on.  This helps us get running with your code.
 
@@ -41,6 +39,7 @@ Requirements
 ## Bonus
 * Tag names are case-insensitive (ie: Html is the same as html)
 * Parse multiple sections of the HTML content at the same time for performance
+* Handle invalid HTML
 
 Scoring Rules
 -------------
