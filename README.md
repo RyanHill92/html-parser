@@ -3,22 +3,21 @@ MarkupProject
 
 Info
 ----
-Create a class in the language of your choice that will read HTML content input and score and give
-an arbitrary score based on a set of rules. The content should be assigned a unique id based on the prefix described below.
-Changes to the content can be re-run over time to determine improvement or regression of the score. Each unique run should be stored with the date and time it was run along with the score received for the content.
+Create an interactive program in the language of your choice that will read, score, and then assign
+an arbitrary score to HTML files based on a set of rules. Changes to the content can be re-run over time to determine improvement or regression of the score. Each unique run should be stored with the date and time it was run along with the score received for the content.
 
 You may use external libraries if you feel they will help, but you must place them in the appropriate folder based on the project layout section.
 
-Code Requirements
+Requirements
 -----------------
 * Accept HTML Content Input
-* Accept unique id for HTML Content to score (filename prefix)
+* Accept filename prefix to score HTML Content (`bob_2013_02_10` for `bob_2013_02_10.html`)
 * Score HTML content using the scoring guide
 * Save results to a SQL database (MySQL, SQL Server, sqlite, SQL Server Express)
-* Method: Retrieve scores for a unique id
-* Method: Retrieve all scores run in the system for a custom date range
-* Method: Retrieve highest scored unique id
-* Method: Retrieve lowest scored unique id
+* A user should be able to retrieve scores for a given filename prefix
+* A user should be able to retrieve all scores run in the system for a custom date range
+* A user should be able to retrieve highest scored unique id
+* A user should be able to retrieve lowest scored unique id
 * Additionally you should write one query that will find the average score for all runs **__see project layout below__**
 * Finally, include instructions on how to get your code running.  Include the version of whatever language you wrote it in, as well as what platform (windows/osx/linux, etc) you are on.  This helps us get running with your code.
 
