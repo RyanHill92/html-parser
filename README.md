@@ -84,12 +84,11 @@ Project Layout
 --------------
 #### /data
 
-* Contains the HTML content data to parse, format: (author.html)
+* Contains the HTML content data to parse, format: (filename.html)
 
 ie:
-* dougs.html
-* jennifer.html
-* laika.html
+* help.html
+* home.html
 
 #### /src
 
@@ -104,9 +103,8 @@ ie:
 
 | key | avgScore |
 |---|--------|
-| dougs | 10.35 |
-| jennifer  | 8.03 |
-| laika  | 42.0 |
+| help | 10.35 |
+| home  | 8.03 |
 
 #### /vendor
 
