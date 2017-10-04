@@ -7,7 +7,7 @@ A new search engine just hit the market, and their search result rankings are de
 
 Your program needs to calculate the score for a given HTML file and save it to a database as a record so quality-control has a record to reference later. In addition to the score you'll also need to save the name of the file and the date and time that the score was calculated. Each time a file is updated it will need to be re-scored, so we will need to be able to see if the quality of the files have improved or declined over time. Your schema must support the ability to score the same file name multiple times and keep a record of each itteration.
 
-They also want to be able to pull data about files quickly, and have asked for the ability to retrieve all scores generated in a provided date range, retrive the name of the file with the all-time highest score abd all time lowest score, and to see the average scores for all files.
+They also want to be able to pull data about files quickly, and have asked for the ability to retrieve all scores generated in a provided date range, retrive the name of the file with the all-time highest score, the name of the file with the all time lowest score, and to see the average scores for all files.
 
 In the data folder of this project you'll find the company's existing files, which you should use for testing your application. Your code should be able to score all the provided files, store the score information in a database, and provide a way for users to retrieve the data that your team has requested access to.
 
