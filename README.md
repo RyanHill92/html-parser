@@ -45,8 +45,6 @@ Scoring Rules
 -------------
 Each starting tag should below has been assigned a score. Each tag in the content should be added to or subtracted from the total score.
 
-(We will assume for this project our html code creator created valid html)
-
 | TagName | Score Modifier | TagName | Score Modifier |
 | ------- | :------------: | ------- | -------------- |
 | div     | 3              | font    | -1             |
