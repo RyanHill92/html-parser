@@ -3,21 +3,18 @@ MarkupProject
 
 Business Case
 ----
-A new search engine just hit the market, and their search result rankings are determined by the type and number of HTML tags used on a website. Your company wants to make sure all of their web pages are going to perform well in this new system, and have asked you to build a tool for the quality-control team that will help them keep tabs on how your pages are scoring in the new system.
+A new search engine just hit the market, and their search result rankings are determined by the type and number of HTML tags used on a website. Your company wants to make sure all of their web pages are going to perform well in this new search engine, and have asked you to build a tool for the SEO team that will help them keep tabs on how your pages are scoring in the new search engine.
 
-Your program needs to calculate the score for a given HTML file and save it to a database as a record so quality-control has a record to reference later. In addition to the score you'll also need to save the name of the file and the date and time that the score was calculated. Each time a file is updated it will need to be re-scored, so we will need to be able to see if the quality of the files have improved or declined over time. Your schema must support the ability to score the same file name multiple times and keep a record of each itteration.
+The tool needs to calculate the score for a given HTML file and save the score, as well as the date and time it was calculated, so that the SEO team can track quality changes over time. They want to be able to pull data about files quickly, and have asked for the ability to retrieve all scores generated in a provided date range, retrieve the all time highest score for a given file, the all time lowest score for a given file, and to see the average score for a given file.
 
-They also want to be able to pull data about files quickly, and have asked for the ability to retrieve all scores generated in a provided date range, retrive the name of the file with the all-time highest score, the name of the file with the all time lowest score, and to see the average scores for all files.
-
-In the data folder of this project you'll find the company's existing files, which you should use for testing your application. Your code should be able to score all the provided files, store the score information in a database, and provide a way for users to retrieve the data that your team has requested access to.
-
+In the data folder of this project you'll find the company's existing files, which you should use for testing your application.
 
 Technical Requirements
 -----------------
 Create a program in the language of your choice that will read HTML files, calculate scores based on the set of rules provided below, and then save the score for each file. Changes to the content can be re-run over time to determine improvement or regression of the score. Each unique run should be stored with the date and time it was run along with the score received for the file.
 
-You may use external libraries if you feel they will help, but you must place them in the appropriate folder based on the project layout section.
-
+You may use external libraries if you feel they will help, but you should keep them separate from the code that you have written.
+* Include teh 
 * Score HTML content using the provided scoring guide
 * Save results to a SQL database (MySQL, SQL Server, sqlite, SQL Server Express)
 * A user should be able to retrieve all scores for a given file
@@ -26,7 +23,7 @@ You may use external libraries if you feel they will help, but you must place th
 * A user should be able to retrieve lowest score for a given file
 * A user should be able to retrieve the average score for each unique file name
 
-* Finally, include instructions on how to get your code running. This should include the version of whatever language used, as well as what platform (windows/osx/linux, etc) you are on, and how to install any dependencies that are required to set up your project.  This helps us get running with your code.
+* Finally, include instructions on how to get your code running. This should include the version of whatever language used, as well as what platform (windows/osx/linux, etc) you are on, and how to install any and all dependencies that are required to run your program. This helps us get running with your code.
 
 **Example of instructions and platform specifications**
 
@@ -45,20 +42,6 @@ You may use external libraries if you feel they will help, but you must place th
 >3. Navigate to the src/ directory
 >4. run `npm install` to install all dependencies
 >4. run `npm start` to start up the program
-
-## Bonus
-* Your program treats tag names as case-insensitive (ie: Html evaluates the same as html)
-* Parse multiple sections of the HTML content at the same time for performance
-* Handle invalid or poorly formatted HTML. Example:
-
-````
-<html>
-    <body>
-      <p>foo</p> <p>bar</p>
-      <div text-align='center'> <big>hello world</big> </div>
-    </body>
-</html>
-````
 
 Scoring Rules
 -------------
@@ -96,28 +79,21 @@ example:
 1 big tag = 1 x -2 <br>
 **Total Score: 13**
 
+## Bonus Points
+* Your program treats tag names as case-insensitive (ie: Html evaluates the same as html)
+* Parse multiple sections of the HTML content at the same time for performance
+* Handle invalid or poorly formatted HTML. Example:
 
-Project Layout
---------------
-#### /data
+````
+<html>
+    <body>
+      <p>foo</p> <p>bar</p>
+      <div text-align='center'> <big>hello world</big> </div>
+    </body>
+/html>
+````
 
-* Contains the HTML content data to parse, format: (filename.html)
 
-ie:
-* help.html
-* home.html
-
-#### /src
-
-* Your code goes in here.
-
-#### /schema
-
-* Your create table statements for MySQL.
-
-#### /vendor
-
-* Place any external libraries not written by you in the /vendor folder
 
 Instructions
 ------------
