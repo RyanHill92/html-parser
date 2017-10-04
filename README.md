@@ -13,7 +13,8 @@ Technical Requirements
 -----------------
 Create a program in the language of your choice that will read HTML files, calculate scores based on the set of rules provided below, and then save the score for each file. Changes to the content can be re-run over time to determine improvement or regression of the score. Each unique run should be stored with the date and time it was run along with the score received for the file.
 
-You may use external libraries if you feel they will help, but you should keep them separate from the code that you have written.
+You may use external libraries if you feel they will help, but you should keep them separate from the code that you yourself have written.
+
 * Score HTML content using the provided scoring guide
 * Save results to a SQL database (MySQL, SQL Server, sqlite, SQL Server Express)
 * A user should be able to retrieve all scores for a given file
@@ -85,7 +86,7 @@ example:
 
 ## Bonus Points
 * Your program treats tag names as case-insensitive (ie: Html evaluates the same as html)
-* Parse multiple sections of the HTML content at the same time for performance
+* Parse multiple files at the same time for performance
 * Handle invalid or poorly formatted HTML. Example:
 
 ````
