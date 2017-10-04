@@ -78,6 +78,11 @@ example:
 1 big tag = 1 x -2 <br>
 **Total Score: 13**
 
+## Deliverables
+* The source code for your solution.
+* The database schema you use to implement your solution.
+* Any additional documentation you feel is necessary to explain how your application works, or describe your thought process and design decisions.
+
 ## Bonus Points
 * Your program treats tag names as case-insensitive (ie: Html evaluates the same as html)
 * Parse multiple sections of the HTML content at the same time for performance
