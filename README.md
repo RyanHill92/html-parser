@@ -1,15 +1,15 @@
 MarkupProject
 =============
 
-The Story
+Business Case
 ----
-A new search engine just hit the market, and their alogrithm for ranking search results is based on a score determined by the type and number of HTML tags used on the websites. Your company wants to make sure all of their web pages are going to perform well in this new ranking system, and have asked you to build a tool for the quality-control team that will help them make sure your sites can achieve a high ranking in the new points system.
+A new search engine just hit the market, and their search result rankings are determined by the type and number of HTML tags used on a website. Your company wants to make sure all of their web pages are going to perform well in this new system, and have asked you to build a tool for the quality-control team that will help them keep tabs on how your pages are scoring in the new system.
 
-Your program needs to calculate the score for a given HTML file, and save it to a database as a record for quality-control to use later. In addition to the score, you'll also need to save the name of the author, and the date and time that the score was entered. Files that fall below the minimum score will be sent back to the development team to improve. We will need to be able to see if the quality of the files have improved or declined over time, so your schema must support the ability to score the same file name multiple times and keep a record of each itteration.
+Your program needs to calculate the score for a given HTML file and save it to a database as a record so quality-control has a record to reference later. In addition to the score you'll also need to save the name of the file and the date and time that the score was calculated. Each time a file is updated it will need to be re-scored, so we will need to be able to see if the quality of the files have improved or declined over time. Your schema must support the ability to score the same file name multiple times and keep a record of each itteration.
 
-They also want to be able to pull data about files quickly, and have asked for the ability to retrive the names of the file with the all-time highest score, all time lowest score, and to see the average score for any file.
+They also want to be able to pull data about files quickly, and have asked for the ability to retrieve all scores generated in a provided date range, retrive the name of the file with the all-time highest score abd all time lowest score, and to see the average scores for all files.
 
-In the data folder you'll find the company's existing files, which you can use for testing your application. Your code should be able to score all the provided files, store the score information in a database, and retrieve the lowest, highest, and average scores from your database.
+In the data folder of this project you'll find the company's existing files, which you should use for testing your application. Your code should be able to score all the provided files, store the score information in a database, and provide a way for users to retrieve the data that your team has requested access to.
 
 
 Technical Requirements
