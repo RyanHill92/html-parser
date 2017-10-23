@@ -1,4 +1,4 @@
-MarkupProject
+Scoring Project
 =============
 
 Business Case
