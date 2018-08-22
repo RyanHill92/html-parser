@@ -1,0 +1,32 @@
+{
+  "name": "scoring-project-ryanhill92",
+  "version": "1.0.0",
+  "description": "A CLI to read, score, and return data on HTML files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./**/*.test.js --exit",
+    "start": "node index.js -m help",
+    "score": "node index.js -m score",
+    "build": "node db/mongo-config.js",
+    "all": "node index.js -m all",
+    "get": "node index.js -m get"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RedVentures22/scoring-project-RyanHill92.git"
+  },
+  "author": "Ryan Hill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RedVentures22/scoring-project-RyanHill92/issues"
+  },
+  "homepage": "https://github.com/RedVentures22/scoring-project-RyanHill92#readme",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "mongodb": "^3.1.3"
+  },
+  "devDependencies": {
+    "expect": "^23.5.0",
+    "mocha": "^5.2.0"
+  }
+}
