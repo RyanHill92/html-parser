@@ -1,3 +1,4 @@
+//Text instructions for using program, displayed on command "npm start."
 function showHelp () {
   console.log(`Welcome to Hyper Text Tracker!
 

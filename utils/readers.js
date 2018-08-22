@@ -40,6 +40,8 @@ function readAsync (filePath) {
 
 //Promise chainable function to score a given html file.
 //Uses tags map and regexp generator above to calculate said score.
+//Resolves as that score or throws an error.
+//Always called/returned as part of a larger chain with its own catch.
 function scorerAsync (fileName) {
   let score = 0;
   return readAsync('./data/' + fileName + '.html').then(data => {
@@ -49,7 +51,7 @@ function scorerAsync (fileName) {
       //Only change the value of score if one or more instances of tag found.
       if (instances) {
         score += instances.length * value;
-        // Uncomment line below to see breakdown of found tags and sub-scores.
+        // Uncomment line below to see breakdown of found tags and sub-scores for each scored file.
         // console.log(`Found ${instances.length} ${key} tags for ${instances.length * value} points.`);
       }
     });
@@ -60,6 +62,9 @@ function scorerAsync (fileName) {
   });
 }
 
+//Uses fs.readdir to process all files in ./data.
+//Each filename in the resulting array is trimmed of its .html extension.
+//Then, each file is scored and stored in the second .then() block's loop.
 function readAllAsync () {
 
   return new Promise ((res, rej) => {
@@ -79,6 +84,8 @@ function readAllAsync () {
           console.log(err);
         });
     }
+    //Obviously resolves before scorerAsync and storeScore calls clear from call stack,
+    //but not an issue since no need to pass a value on to subsequent block.
     return;
 
   }).catch(err => {

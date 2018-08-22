@@ -1,4 +1,5 @@
-function mockMaker(func) {
+//Simple mock/dummy function-maker to aid in test for readAllAsync (./utils/readers.js).
+function mockMaker() {
   function wrapper(value) {
     wrapper.cache.set(call, value);
     call += 1;

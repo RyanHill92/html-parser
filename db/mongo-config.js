@@ -1,5 +1,7 @@
 const {MongoClient} = require('mongodb');
 
+//All functions in mongo-ops.js depend on these variables.
+//Thus, one can switch DBs in an instant without any code to rewrite.
 const mongoUri = 'mongodb://RyanHill92:password123456@ds125892.mlab.com:25892/scoring-project';
 const dbName = 'scoring-project';
 const collName = 'Scores';
@@ -15,6 +17,7 @@ MongoClient.connect(mongoUri, {useNewUrlParser: true}, function(err, client) {
 
   const db = client.db(dbName);
 
+  //Schema validation for created collection. 
   db.createCollection(collName, {
     validator: {
       $jsonSchema: {

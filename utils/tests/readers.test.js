@@ -1,8 +1,10 @@
 const fs = require('fs');
 const expect = require('expect');
 
+//Test these two reader functions as they are...
 const {scorerAsync, readAsync} = require('./../readers');
 
+//...but use mock-making function to aid in testing of readAllAsync below.
 const mockMaker = require('./../mock');
 
 describe('readAsync', () => {
@@ -59,8 +61,7 @@ function readAllAsync () {
       }
       let fileNames = files.map((file) => file.match(/([\w-]+).html/)[1]);
       //Capture return value of first resolved Promise.
-      firstBlock(fileNames);
-      res(fileNames);
+      res(firstBlock(fileNames));
     });
 
   }).then(fileNames => {
@@ -90,7 +91,7 @@ describe('readAllAsync', () => {
       setTimeout(() => {
         expect(storeScore.cache.size).toBe(10);
         done();
-      }, 10);
+      }, 25);
     }).catch(e => done(e));
   });
 });

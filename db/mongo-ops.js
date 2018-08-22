@@ -1,9 +1,16 @@
 const {MongoClient} = require('mongodb');
+
+//Mongo env variables direct all functions below to proper DB.
 const {mongoUri, dbName, collName} = require('./mongo-config');
+
+//Local utilities
 const resChecker = require('./../utils/res-checker');
 const {currentTime, currentDate, currentTimeZone} = require('./../utils/current-times');
+
+//Core node module to ensure visibility of nested objects.
 const util = require('util');
 
+//House connection to DB in reusable function.
 function connect () {
   return MongoClient.connect(mongoUri, {useNewUrlParser: true}).then(client => {
     return {
@@ -15,12 +22,14 @@ function connect () {
   });
 }
 
+//Ditto with closing out.
 function close (client) {
   if (client) {
     client.close();
   }
 }
 
+//Insert run data, including score and fileName.
 function storeScore (score, fileName) {
   let client = null;
 
@@ -29,6 +38,9 @@ function storeScore (score, fileName) {
     const {db} = dbObj;
     client = dbObj.client;
 
+    //Util functions return convenient, readable fragments of date string
+    //and meet schema validation requirements. Of the time/date fields, only timeStamp
+    //is involved in queries below for filtering purposes (i.e. applying start/end dates).
     const run = {
       fileName,
       score,
@@ -50,7 +62,9 @@ function storeScore (score, fileName) {
   });
 }
 
-
+//Return a range of data from the DB on all scored files.
+//Aggregation pipeline operators return one document per unique fileName,
+//with a "scores" field equal to an array of unique score/date/time objects.
 function getAllScores (start, end) {
   let client = null;
 
@@ -94,7 +108,7 @@ function getAllScores (start, end) {
   });
 }
 
-
+//Return the most recent instance of a given file's highest score.
 function getHigh (fileName) {
   let client = null;
 
@@ -126,7 +140,7 @@ function getHigh (fileName) {
   });
 }
 
-
+//Return an average of all scores calculated for a given file.
 function getAverage (fileName) {
   let client = null;
 
@@ -155,7 +169,7 @@ function getAverage (fileName) {
   });
 }
 
-
+//Return the most recent instance of a given file' lowest score.
 function getLow (fileName) {
   let client = null;
 
@@ -177,6 +191,7 @@ function getLow (fileName) {
     ]).toArray()
 
   }).then(res => {
+    resChecker(res, fileName);
     console.log(res);
     close(client);
 
