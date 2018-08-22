@@ -14,13 +14,14 @@ switch(args.m) {
   //The "npm start" script points to this case, which displays text instructions.
   case 'help':
     showHelp();
-    return;
+    break;
 
   //Score and store in the DB all files in ./data OR only those named on command line.
   case 'score':
     if (args.all) {
       //Score all files currently in ./data.
-      return readAllAsync();
+      readAllAsync();
+      break;
     } else {
       //Run the scorer function for as many filenames as are provided...
       for (let fileName of args._) {
@@ -29,17 +30,16 @@ switch(args.m) {
           .catch(e => console.log(e));
       }
       // ...or not at all if args._ is empty.
-      return;
+      break;
     }
 
   //Return (a date-range-defined section of) all scores by filename from DB.
   case 'all':
     //Process input from --sd and --ed flags (if any).
     let [start, end] = getBounds(args);
-    //Pass date bounds (if any) in ms-since-UNIX-epoch timestamps to insert function.
     getAllScores(start, end);
-    return;
-
+    break;
+    
   //Get data (high, low, avg) on a given file from the DB.
   case 'get':
 
@@ -47,30 +47,30 @@ switch(args.m) {
 
     //Simple validator in case no filename provided.
     if (!fileName) {
-      console.log('Please enter a valid filename.');
-      return;
+      console.log('Please include a valid filename. Run "npm start" for help.');
+      break;
     }
     //Control flow for --avg/--high/--low flags.
     if (args.avg) {
       //Retrieve average score for a given file from the DB.
       getAverage(fileName);
-
+      break;
     } else if (args.high) {
       //Retrieve most recent instance of highest score for a given file from the DB.
       getHigh(fileName);
-      return;
+      break;
 
     } else if (args.low) {
       //Retrieve most recent instance of lowest score for a given file from the DB.
       getLow(fileName);
-      return;
+      break;
 
     } else {
-      return;
+      break;
     }
 
   //Return if none of the cases above are satisfied.
   default:
     console.log('Please enter a valid command. Run "npm start" for help.');
-    return;
+    break;
 }

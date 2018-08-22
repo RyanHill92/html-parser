@@ -1,7 +1,12 @@
 const {MongoClient} = require('mongodb');
 
 //Mongo env variables direct all functions below to proper DB.
-const {mongoUri, dbName, collName} = require('./mongo-config');
+const {mongoUri, dbName} = require('./mongo-config');
+
+//Ensures functions below, when called in the test suite, will point to test DB.
+const {collName} = process.env.NODE_ENV === 'test' ?
+  require('./tests/mongo-test-config') :
+  require('./mongo-config');
 
 //Local utilities
 const resChecker = require('./../utils/res-checker');
@@ -33,7 +38,7 @@ function close (client) {
 function storeScore (score, fileName) {
   let client = null;
 
-  connect().then(dbObj => {
+  return connect().then(dbObj => {
 
     const {db} = dbObj;
     client = dbObj.client;
@@ -52,13 +57,12 @@ function storeScore (score, fileName) {
     return db.collection(collName).insertOne(run);
 
   }).then(res => {
-      console.log(`Stored run data for '${fileName}.html.' Score: ${res.ops[0].score}`);
       close(client);
+      console.log(`Stored run data for '${fileName}.html.' Score: ${res.ops[0].score}`);
 
   }).catch(err => {
-      console.log(err);
       close(client);
-
+      console.log(err);
   });
 }
 
@@ -68,7 +72,7 @@ function storeScore (score, fileName) {
 function getAllScores (start, end) {
   let client = null;
 
-  connect().then(dbObj => {
+  return connect().then(dbObj => {
 
     const {db} = dbObj;
     client = dbObj.client;
@@ -80,7 +84,7 @@ function getAllScores (start, end) {
         }
       },
       { $sort:
-        { time: -1 }
+        { timeStamp: -1 }
       },
       { $group:
         { _id: '$fileName', scores: { $push: { score: '$score', date: '$date', time: '$time' } } }
@@ -88,6 +92,7 @@ function getAllScores (start, end) {
     ]).toArray()
 
   }).then(runs => {
+    close(client);
     if (runs.length === 0) {
       console.log('No scores recorded in given date range.');
     } else {
@@ -99,12 +104,10 @@ function getAllScores (start, end) {
         })
       );
     }
-    close(client);
-
+    return runs;
   }).catch(err => {
     console.log(err);
     close(client);
-
   });
 }
 
@@ -112,7 +115,7 @@ function getAllScores (start, end) {
 function getHigh (fileName) {
   let client = null;
 
-  connect().then(dbObj => {
+  return connect().then(dbObj => {
 
     const {db} = dbObj;
     client = dbObj.client;
@@ -133,7 +136,7 @@ function getHigh (fileName) {
     resChecker(res, fileName);
     console.log(res);
     close(client);
-
+    return res;
   }).catch(err => {
     console.log(err);
     close(client);
@@ -144,7 +147,7 @@ function getHigh (fileName) {
 function getAverage (fileName) {
   let client = null;
 
-  connect().then(dbObj => {
+  return connect().then(dbObj => {
 
     const {db} = dbObj;
     client = dbObj.client;
@@ -162,7 +165,7 @@ function getAverage (fileName) {
     resChecker(res, fileName);
     console.log(res);
     close(client);
-
+    return res;
   }).catch(err => {
     console.log(err);
     close(client);
@@ -173,7 +176,7 @@ function getAverage (fileName) {
 function getLow (fileName) {
   let client = null;
 
-  connect().then(dbObj => {
+  return connect().then(dbObj => {
 
     const {db} = dbObj;
     client = dbObj.client;
@@ -194,7 +197,7 @@ function getLow (fileName) {
     resChecker(res, fileName);
     console.log(res);
     close(client);
-
+    return res;
   }).catch(err => {
     console.log(err);
   });
@@ -205,5 +208,7 @@ module.exports = {
   getAllScores,
   getHigh,
   getLow,
-  getAverage
+  getAverage,
+  connect,
+  close
 }

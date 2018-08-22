@@ -91,7 +91,7 @@ describe('readAllAsync', () => {
       setTimeout(() => {
         expect(storeScore.cache.size).toBe(10);
         done();
-      }, 25);
+      }, 100);
     }).catch(e => done(e));
   });
 });

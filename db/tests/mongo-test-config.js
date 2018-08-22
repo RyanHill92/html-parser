@@ -1,12 +1,11 @@
 const {MongoClient} = require('mongodb');
 
-//All functions in mongo-ops.js depend on these variables.
-//Thus, one can switch DBs in an instant without any code to rewrite.
+const mongoUri = 'ENTER SAME MONGODB URI HERE AS IN MONGO-CONFIG.JS';
+const dbName = 'ENTER SAME DB NAME HERE AS IN MONGO-CONFIG.JS';
+//Create a separate test collection.
+const collName = 'Scores-Test';
 
-const mongoUri = 'ENTER MONGODB URI HERE';
-const dbName = 'ENTER DB NAME HERE';
-const collName = 'Scores';
-
+//The code below creates a test DB with schema validation identical to that of project DB.
 MongoClient.connect(mongoUri, {useNewUrlParser: true}, function(err, client) {
   if (err) {
     console.log('Error connecting to database.');
@@ -57,8 +56,7 @@ MongoClient.connect(mongoUri, {useNewUrlParser: true}, function(err, client) {
   .catch(e => console.log(e));
 });
 
+//Export the test collection name to ./mongo-ops.test.js.
 module.exports = {
-  mongoUri,
-  dbName,
   collName
 };
