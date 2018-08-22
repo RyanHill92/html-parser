@@ -17,7 +17,7 @@ MongoClient.connect(mongoUri, {useNewUrlParser: true}, function(err, client) {
 
   const db = client.db(dbName);
 
-  //Schema validation for created collection. 
+  //Schema validation for created collection.
   db.createCollection(collName, {
     validator: {
       $jsonSchema: {
