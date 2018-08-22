@@ -37,4 +37,4 @@ Running the Program
 
 5. Use command `"npm start"` to view instructions in the terminal for scoring files and storing/retrieving data.
 
-6. Optional: Run `"npm install mocha expect"`. Then, in `./db/tests/mongo-test-config.js`, assign the same values to `MongoUri` and `dbName` as you did in `./db/mongo-config.js`. Assign a different value (e.g. Scores-Test) to `collName`, and then use command `"npm run testbuild"` to construct test DB with schema validation identical to that of project DB. Finally, run `"npm test"` to run the test cases in `./utils/tests` and `./db/tests`.
+6. Optional: Run `"npm install mocha expect"`. Then, in `./db/tests/mongo-test-config.js`, assign the same values to `MongoUri` and `dbName` as you did in `./db/mongo-config.js`. Assign a different value (e.g. Scores-Test) to `collName`, and then use command `"npm run testbuild"` to construct a test DB with schema validation identical to that of project DB. Finally, run `"npm test"` to run the test cases in `./utils/tests` and `./db/tests`.
