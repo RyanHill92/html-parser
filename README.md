@@ -31,7 +31,7 @@ Running the Program
 
 2. In addition to the `MongoUri` variable, assign values to `dbName` (e.g. Scoring-Project) and `collName` (e.g. Scores). (**NB:** If you used a URI from mLab, the name of your database should appear both at the end of that URI and as the value stored by `dbName`.)
 
-3. In the terminal, navigate to the root directory and run `"npm install"` to download the project's dependencies. (If using the `--production` flag, you'll also need to run `"npm install mocha expect"` for step 6 to work.)
+3. In the terminal, navigate to the root directory and run `"npm install"` to download the project's dependencies. (If using the `--production` flag, you'll still need to install packages for `mocha` and `expect` for step 6 to work.)
 
 4. Run `"npm run build"` to generate (with schema validation) the collection you named in step 2.
 
