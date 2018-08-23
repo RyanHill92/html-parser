@@ -6,32 +6,40 @@ const runs = [
   {
     fileName: 'sample-one',
     score: 10,
-    date: '2018-08-15',
-    time: '00:00:00',
+    utcDate: '2018-08-15',
+    utcTime: '00:00:00',
+    localDate: 'Wed Aug 15 2018',
+    localTime: '20:00:00',
     timeZone: 'Eastern Daylight Time',
     timeStamp: new Date('2018-08-15').getTime()
   },
   {
     fileName: 'sample-one',
     score: 20,
-    date: '2018-08-20',
-    time: '00:00:00',
+    utcDate: '2018-08-20',
+    utcTime: '00:00:00',
+    localDate: 'Mon Aug 20 2018',
+    localTime: '20:00:00',
     timeZone: 'Eastern Daylight Time',
     timeStamp: new Date('2018-08-20').getTime()
   },
   {
     fileName: 'sample-two',
     score: 10,
-    date: '2018-08-10',
-    time: '00:00:00',
+    utcDate: '2018-08-10',
+    utcTime: '00:00:00',
+    localDate: 'Fri Aug 10 2018',
+    localTime: '20:00:00',
     timeZone: 'Eastern Daylight Time',
     timeStamp: new Date('2018-08-10').getTime()
   },
   {
     fileName: 'sample-two',
     score: 10,
-    date: '2018-08-22',
-    time: '00:00:00',
+    utcDate: '2018-08-22',
+    utcTime: '00:00:00',
+    localDate: 'Wed Aug 22 2018',
+    localTime: '20:00:00',
     timeZone: 'Eastern Daylight Time',
     timeStamp: new Date('2018-08-22').getTime()
   }
@@ -87,7 +95,7 @@ describe('getAllScores', () => {
     }).catch(e => done(e));
   });
 
-  it('should filter returned data appropriately when passed a date range', (done) => {
+  it('should filter returned data appropriately when passed a UTC date range', (done) => {
     getAllScores(new Date('2018-08-15').getTime(), new Date('2018-08-20').getTime()).then(runs => {
       expect(runs).toHaveLength(1);
       expect(runs[0]).toMatchObject({_id: 'sample-one'});
@@ -101,7 +109,7 @@ describe('getHigh', () => {
   it('should return a single object (in an array) with file\'s most recent instance of high score', (done) => {
     getHigh('sample-two').then(res => {
       expect(res[0]).toHaveProperty('highScore', 10);
-      expect(res[0].date).toBe('2018-08-22');
+      expect(res[0].utcDate).toBe('2018-08-22');
       done();
     }).catch(e => done(e));
   });
@@ -111,7 +119,7 @@ describe('getLow', () => {
   it('should return a single object (in an array) with file\'s most recent instance of low score', (done) => {
     getLow('sample-two').then(res => {
       expect(res[0]).toHaveProperty('lowScore', 10);
-      expect(res[0].date).toBe('2018-08-22');
+      expect(res[0].utcDate).toBe('2018-08-22');
       done();
     }).catch(e => done(e));
   });

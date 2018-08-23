@@ -15,10 +15,10 @@ Flags:
 
 --all -- Score all files in the "data" sub-directory (boolean)
 
---sd -- Start date for custom date range (string)
+--sd -- Start date (at UTC time 00:00:00) for custom date range (string)
   ex. '2018-08-01' [Aug. 1, 2018] or '2017' [Jan. 1, 2017]
 
---ed -- End date for custom date range (string)
+--ed -- End date (at UTC time 00:00:00) for custom date range (string)
   ex. '2018-08-20' [Aug. 20, 2018] or '2018-05' [May 1, 2018]
 
 --avg -- Average score for single file (boolean)

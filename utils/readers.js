@@ -41,7 +41,7 @@ function readAsync (filePath) {
 //Promise chainable function to score a given html file.
 //Uses tags map and regexp generator above to calculate said score.
 //Resolves as that score or throws an error.
-//Always called/returned as part of a larger chain with its own catch.
+//Always called/returned as part of a larger chain with its own catch block.
 function scorerAsync (fileName) {
   let score = 0;
   return readAsync('./data/' + fileName + '.html').then(data => {

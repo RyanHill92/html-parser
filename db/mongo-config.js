@@ -1,15 +1,11 @@
 const {MongoClient} = require('mongodb');
 
-//All functions in mongo-ops.js depend on these variables.
-//Thus, one can switch DBs in an instant without any code to rewrite.
-
-// const mongoUri = 'ENTER MONGODB URI HERE';
-// const dbName = 'ENTER DB NAME HERE';
+//All functions in mongo-ops.js and mongo-ops.test.js depend on these variables.
+const mongoUri = 'ENTER MONGODB URI HERE';
+const dbName = 'ENTER DB NAME HERE';
 let collName = 'Scores';
 
-const mongoUri = 'mongodb://RyanHill92:password123456@ds125892.mlab.com:25892/scoring-project';
-const dbName = 'scoring-project';
-
+//Ensures all function calls in mongo-ops.test.js point to test DB.
 if (process.env.NODE_ENV === 'test') {
   collName = 'Test';
 }
@@ -26,7 +22,7 @@ MongoClient.connect(mongoUri, {useNewUrlParser: true}, function(err, client) {
     validator: {
       $jsonSchema: {
         bsonType: 'object',
-        required: ['fileName', 'score', 'date', 'time', 'timeZone', 'timeStamp'],
+        required: ['fileName', 'score', 'utcDate', 'utcTime', 'localDate', 'localTime', 'timeZone', 'timeStamp'],
         properties: {
           fileName: {
             type: 'string',
@@ -37,12 +33,22 @@ MongoClient.connect(mongoUri, {useNewUrlParser: true}, function(err, client) {
             type: 'number',
             description: 'must be a positive or negative whole number'
           },
-          date: {
+          utcDate: {
             type: 'string',
             pattern: '\\d{4}-\\d{2}-\\d{2}',
-            description: 'must be a string in YYYY-MM-DD format'
+            description: 'relevant date (YYYY-MM-DD) for custom date range data retrieval'
           },
-          time: {
+          utcTime: {
+            type: 'string',
+            pattern: '\\d{2}:\\d{2}:\\d{2}',
+            description: 'relevant time for custom date range data retrieval'
+          },
+          localDate: {
+            type: 'string',
+            pattern: '\\w{3}\\s\\w{3}\\s\\d{2}\\s\\d{4}',
+            description: 'local date in format ddd MMM DD YYYY'
+          },
+          localTime: {
             type: 'string',
             pattern: '\\d{2}:\\d{2}:\\d{2}',
             description: 'must be a string in HH:MM:SS format'

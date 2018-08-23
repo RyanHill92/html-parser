@@ -1,4 +1,5 @@
 //Processes input from --sd and --ed flags.
+//Assumes UTC time 00:00:00 for each provided date, if any.
 //Passes results to getAllScores (./db/mongo-ops.js) for filtering purposes.
 function getBounds(args) {
   //Capture values from command line.
@@ -9,7 +10,6 @@ function getBounds(args) {
   if (start) {
     start = new Date(`${start}`).getTime();
   }
-
 
   if (end) {
     end = new Date(`${end}`).getTime();

@@ -5,7 +5,7 @@ const {mongoUri, dbName, collName} = require('./mongo-config');
 
 //Local utilities
 const resChecker = require('./../utils/res-checker');
-const {currentTime, currentDate, currentTimeZone} = require('./../utils/current-times');
+const {localTime, localDate, currentTimeZone, utcDate, utcTime} = require('./../utils/current-times');
 
 //Core node module to ensure visibility of nested objects.
 const util = require('util');
@@ -39,13 +39,15 @@ function storeScore (score, fileName) {
     client = dbObj.client;
 
     //Util functions return convenient, readable fragments of date string
-    //and meet schema validation requirements. Of the time/date fields, only timeStamp
-    //is involved in queries below for filtering purposes (i.e. applying start/end dates).
+    //and meet schema validation requirements. Of the time/date fields, only timeStamp,
+    //which reflects the UTC time and date, is used to calculate inclusion in custom date ranges.
     const run = {
       fileName,
       score,
-      date: currentDate(),
-      time: currentTime(),
+      utcDate: utcDate(),
+      utcTime: utcTime(),
+      localDate: localDate(),
+      localTime: localTime(),
       timeZone: currentTimeZone(),
       timeStamp: Date.now()
     };
@@ -82,7 +84,18 @@ function getAllScores (start, end) {
         { timeStamp: -1 }
       },
       { $group:
-        { _id: '$fileName', scores: { $push: { score: '$score', date: '$date', time: '$time' } } }
+        { _id: '$fileName',
+          scores:
+            { $push:
+              {
+                score: '$score',
+                utcDate: '$utcDate',
+                utcTime: '$utcTime',
+                localDate: '$localDate',
+                localTime: '$localTime'
+              }
+            }
+        }
       }
     ]).toArray()
 
@@ -123,7 +136,12 @@ function getHigh (fileName) {
         { timeStamp: 1 }
       },
       { $group:
-        { _id: '$fileName', highScore: { $max: '$score' }, date: { $last: '$date' }, time: { $last: '$time' } }
+        { _id: '$fileName',
+          highScore: { $max: '$score' },
+          localDate: {$last: '$localDate'},
+          localTime: {$last: '$localTime'},
+          utcDate: { $last: '$utcDate' },
+          utcTime: { $last: '$utcTime' } }
       }
     ]).toArray();
 
@@ -184,7 +202,12 @@ function getLow (fileName) {
         { timeStamp: 1 }
       },
       { $group:
-        { _id: '$fileName', lowScore: { $min: '$score' }, date: { $last: '$date' }, time: { $last: '$time' } }
+        { _id: '$fileName',
+          lowScore: { $min: '$score' },
+          localDate: {$last: '$localDate'},
+          localTime: {$last: '$localTime'},
+          utcDate: { $last: '$utcDate' },
+          utcTime: { $last: '$utcTime' } }
       }
     ]).toArray()
 
