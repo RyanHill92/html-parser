@@ -10,7 +10,7 @@ One may, at any time, move new `.html` files into the `./data` sub-directory OR 
 
 Each data object is stored with several easily readable time/date strings to pinpoint the exact timing of that run in local and UTC time. The UTC timestamp integer alone is used to determine whether that object should be included in a given date range of data.
 
-**NB:** I know the project instructions requested work in SQL, but Caroline Adams encouraged me to use NoSQL (i.e. MongoDB) if that technology represented my best understanding and thus would lead to me best work. I hope this decision is agreeable.
+**NB:** I know the project instructions requested work in SQL, but Caroline Adams encouraged me to use NoSQL (i.e. MongoDB) if that technology represented (as it does) my best understanding and thus would lead to my best work.
 
 The Tools
 ----
