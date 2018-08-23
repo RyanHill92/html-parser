@@ -8,7 +8,7 @@
     "start": "node index.js -m help",
     "score": "node index.js -m score",
     "build": "node db/mongo-config.js",
-    "testbuild": "node db/tests/mongo-test-config.js",
+    "testbuild": "export NODE_ENV=test && node db/mongo-config.js",
     "all": "node index.js -m all",
     "get": "node index.js -m get"
   },

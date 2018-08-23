@@ -1,12 +1,7 @@
 const {MongoClient} = require('mongodb');
 
 //Mongo env variables direct all functions below to proper DB.
-const {mongoUri, dbName} = require('./mongo-config');
-
-//Ensures functions below, when called in the test suite, will point to test DB.
-const {collName} = process.env.NODE_ENV === 'test' ?
-  require('./tests/mongo-test-config') :
-  require('./mongo-config');
+const {mongoUri, dbName, collName} = require('./mongo-config');
 
 //Local utilities
 const resChecker = require('./../utils/res-checker');

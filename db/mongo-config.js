@@ -3,9 +3,16 @@ const {MongoClient} = require('mongodb');
 //All functions in mongo-ops.js depend on these variables.
 //Thus, one can switch DBs in an instant without any code to rewrite.
 
-const mongoUri = 'ENTER MONGODB URI HERE';
-const dbName = 'ENTER DB NAME HERE';
-const collName = 'Scores';
+// const mongoUri = 'ENTER MONGODB URI HERE';
+// const dbName = 'ENTER DB NAME HERE';
+let collName = 'Scores';
+
+const mongoUri = 'mongodb://RyanHill92:password123456@ds125892.mlab.com:25892/scoring-project';
+const dbName = 'scoring-project';
+
+if (process.env.NODE_ENV === 'test') {
+  collName = 'Test';
+}
 
 MongoClient.connect(mongoUri, {useNewUrlParser: true}, function(err, client) {
   if (err) {

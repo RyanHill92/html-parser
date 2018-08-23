@@ -31,10 +31,10 @@ Running the Program
 
 2. In addition to the `MongoUri` variable, assign values to `dbName` (e.g. Scoring-Project) and `collName` (e.g. Scores). (**NB:** If you used a URI from mLab, the name of your database should appear both at the end of that URI and as the value stored by `dbName`.)
 
-3. In the terminal, navigate to the root directory and use `"npm install"` to download the project's (whopping two) dependencies.
+3. In the terminal, navigate to the root directory and run `"npm install"` to download the project's dependencies. (If using the `--production` flag, you'll also need to run `"npm install mocha expect"` for step 6 to work.)
 
-4. Use command `"npm run build"` to generate (with schema validation) the collection you named in step 2.
+4. Run `"npm run build"` to generate (with schema validation) the collection you named in step 2.
 
-5. Use command `"npm start"` to view instructions in the terminal for scoring files and storing/retrieving data.
+5. Run `"npm start"` to view instructions in the terminal for scoring files and storing/retrieving data.
 
-6. Optional: Run `"npm install mocha expect"`. Then, in `./db/tests/mongo-test-config.js`, assign the same values to `MongoUri` and `dbName` as you did in `./db/mongo-config.js`. Assign a different value (e.g. Scores-Test) to `collName`, and then use command `"npm run testbuild"` to construct a test DB with schema validation identical to that of project DB. Finally, run `"npm test"` to run the test cases in `./utils/tests` and `./db/tests`.
+6. Optional: Run `"npm run testbuild"` to generate a test database with schema validation identical to that of the project database. Only after running the previous command will `"npm run test"` yield all passing cases.

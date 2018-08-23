@@ -1,8 +1,6 @@
 const expect = require('expect');
 const {storeScore, getAllScores, getHigh, getLow, getAverage, connect, close} = require('./../mongo-ops');
-
-//Ensures db.collection(collName)... function calls below point to test DB.
-const {collName} = require('./mongo-test-config');
+const {collName} = require('./../mongo-config');
 
 const runs = [
   {
