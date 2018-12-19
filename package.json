@@ -12,16 +12,8 @@
     "all": "node index.js -m all",
     "get": "node index.js -m get"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RedVentures22/scoring-project-RyanHill92.git"
-  },
   "author": "Ryan Hill",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/RedVentures22/scoring-project-RyanHill92/issues"
-  },
-  "homepage": "https://github.com/RedVentures22/scoring-project-RyanHill92#readme",
   "dependencies": {
     "minimist": "^1.2.0",
     "mongodb": "^3.1.3"

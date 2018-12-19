@@ -39,7 +39,7 @@ switch(args.m) {
     let [start, end] = getBounds(args);
     getAllScores(start, end);
     break;
-    
+
   //Get data (high, low, avg) on a given file from the DB.
   case 'get':
 
@@ -65,9 +65,9 @@ switch(args.m) {
       getLow(fileName);
       break;
 
-    } else {
-      break;
     }
+
+    break;
 
   //Return if none of the cases above are satisfied.
   default:
